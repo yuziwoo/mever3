@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+
+    <title>메버</title>
+
+    <!-- meta description -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="메버">
+    <meta property="og:description" content="메타버스에서 함께 성공하세요. 메타버스 엔진 개발사.">
+    <meta name="description" content="메타버스에서 함께 성공하세요. 메타버스 엔진 개발사.">
+    <meta property="og:url" content="http://www.mever.me">
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-WTK6QP2');
+    </script>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <!-- 고정 CSS -->
+    <link rel="stylesheet" href="css/common.css"> <!-- 기본 구성 -->
+    <link rel="stylesheet" href="css/header.css"> <!-- 헤더 영역 -->
+    <link rel="stylesheet" href="css/footer.css"> <!-- 푸터 영역 -->
+
+    <!-- 유동 CSS -->
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- swiper CDN -->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <script src="js/swiper-bundle.min.js"></script>
+
+  </head>
+  <body>
+
+    <header>
+      
+    </header>
+    
+    <!-- CONTENT AREA -->
+    <main>
+      <section class="main_visual">
+        <video src="img/page1_main.mp4" autoplay muted loop playsinline></video>
+        <div class="text"><h1>실물경제 메타버스. 메버</h1></div>
+      </section>
+
+      <section class="graph">
+        <h1>우선순위 분양 일정</h1>
+        <div class="wrap">
+          <div class="line"></div>
+          <div class="text">
+            <ul>
+              <li>
+                <div class="circle">
+                  <div class="circle2"></div>
+                </div>
+                <p>강남<br>6/29</p>
+              </li>
+              <li>
+                <div class="circle">
+                  <div class="circle2"></div>
+                </div>
+                <p>제주<br>7/6</p>
+              </li>
+              <li>
+                <div class="circle">
+                  <div class="circle2"></div>
+                </div>
+                <p>부산<br>7/13</p>
+              </li>
+              <li>
+                <div class="circle">
+                  <div class="circle2"></div>
+                </div>
+                <p>뉴욕<br>7/21</p>
+              </li>
+              <li>
+                <div class="circle">
+                  <div class="circle2"></div>
+                </div>
+                <p>파리<br>7/29</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section3">
+        <div class="text">
+          <h1>Real metaverse</h1>
+          <p>매주 수요일 20시.<br>당신의 삶은 메버 분양과 동시에 바뀝니다.</p>
+        </div>
+        <div class="time_wrapper">
+          <span class="time_hour">00</span><span> : </span>
+          <span class="time_min">00</span><span> : </span>
+          <span class="time_sec">00</span>
+        </div>
+        <div class="button">
+          <a href="">
+            <p>바로보기</p>
+          </a>
+        </div>
+        <script> //  날짜 주기적 수정 필요
+          let date_now = new Date();
+          let date_target = new Date();
+          let data_arr = ['2022-06-29','2022-07-06','2022-07-13','2022-07-21','2022-07-29']
+          let cur_index = 0;
+          //현재위치
+          
+
+          for(var i = 0; i < data_arr.length-1; i++){
+            var date_pick = new Date(data_arr[i] + ' 20:00:00');
+            if(date_now <= date_pick){
+              cur_index = i;
+            
+              break;
+            }
+          }
+          let next_date_arr = data_arr[cur_index].split('-')
+          date_target.setFullYear(parseInt(next_date_arr[0])); // 년도
+          date_target.setMonth(parseInt(next_date_arr[1])-1); // 월 (1월 = 0)
+          date_target.setDate(parseInt(next_date_arr[2])); // 일 (1일 = 1)
+          date_target.setHours(20); // 시간 (12시 = 12)
+          date_target.setMinutes(0); // 분 (30분 = 30)
+          date_target.setSeconds(0); // 초 (0초 0)
+
+          let hour = document.getElementsByClassName("time_hour")[0];
+          let min = document.getElementsByClassName("time_min")[0];
+          let sec = document.getElementsByClassName("time_sec")[0];
+
+          let date_value = date_target.getTime() - date_now.getTime();
+
+          let time_sec = Math.floor(date_value / 1000);
+          let time_min = Math.floor(time_sec / 60);
+          let time_hour = Math.floor(time_min / 60);
+
+       
+          
+          let time_reset = setInterval(() => {
+            if(date_value <= 0){
+              cur_index++;
+             
+              let next_date_arr = data_arr[cur_index].split('-')
+              date_target.setFullYear(parseInt(next_date_arr[0])); // 년도
+              date_target.setMonth(parseInt(next_date_arr[1])-1); // 월 (1월 = 0)
+              date_target.setDate(parseInt(next_date_arr[2])); // 일 (1일 = 1)
+              date_target.setHours(20); // 시간 (12시 = 12)
+              date_target.setMinutes(0); // 분 (30분 = 30)
+              date_target.setSeconds(0); // 초 (0초 0)
+            }
+            date_now = new Date();
+            date_value = date_target.getTime() - date_now.getTime();
+            time_sec = Math.floor(date_value / 1000);
+            time_min = Math.floor(time_sec / 60);
+            time_hour = Math.floor(time_min / 60);
+
+            if (date_value <= 0 && cur_index == data_arr.length-1) {
+              date_value = 0;
+              hour.innerText = 0;
+              min.innerText= 0;
+              sec.innerText= 0;
+              clearInterval(time_reset);
+            }
+            
+            let result_hour = time_hour;
+            let result_min = time_min % 60;
+            let result_sec = time_sec % 60;
+            hour.innerText = result_hour.toString().length < 2 ? '0' + result_hour : result_hour;
+            min.innerText= result_min.toString().length < 2 ? '0' + result_min : result_min;
+            sec.innerText= result_sec.toString().length < 2 ? '0' + result_sec : result_sec;
+          }, 1000);
+        </script>
+      </section>
+
+      <section class="partners">
+        <h1>Partners</h1>
+        <!-- <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="img/partners1.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners2.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners3.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners4.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners5.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners6.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners7.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners8.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners9.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners10.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners11.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners12.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners13.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners14.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners15.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners16.png" alt=""></div>
+            <div class="swiper-slide"><img src="img/partners17.png" alt=""></div>
+          </div>
+        </div>
+        <script>
+          const swiper = new Swiper (".swiper", {
+            loop: true,
+            allowTouchMove: true,
+            speed: 1300,
+            slidesPerView: 2.3,
+            spaceBetween: 20,
+            autoplay: {
+              delay: 1000,
+              disableOnInteraction: true,
+            },
+            breakpoints: {
+          1024: {
+            slidesPerView: 6,
+            spaceBetween: 40,
+          }
+        }
+          })
+        </script> -->
+        <div class="img"><img src="img/partners.jpg" alt=""></div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mever_footer">
+      <div class="sns">
+        <ul>
+          <li><a href="https://www.youtube.com/channel/UCXHaChrER0XYPrR43S7mx5A"><img src="img/sns1.png" alt=""></a></li>
+          <li><a href="https://www.tiktok.com/@official_mever"><img src="img/sns2.png" alt=""></a></li>
+          <li><a href="https://www.instagram.com/official_mever/"><img src="img/sns3.png" alt=""></a></li>
+          <li><a href="https://www.facebook.com/meVer-101513759130970/"><img src="img/sns4.png" alt=""></a></li>
+          <li><a href="https://blog.naver.com/mevershop"><img src="img/sns5.png" alt=""></a></li>
+          <li class="kakao"><a href="https://pf.kakao.com/_cLNxib"><img src="img/sns6.png" alt=""></a></li>
+          <li><a href="https://smartstore.naver.com/79market1/"><img src="img/sns7.png" alt=""></a></li>          
+        </ul>
+      </div>
+      <div class="bottom">
+        <div class="text">
+          <p>(주)메버<br>
+            사업자 등록번호 : 653-81-02062<br>
+            (주)메버 | 주소 : 서울시 서초구 테헤란로216 <br>
+            개인정보책임자 : 강민성 | 전화 : 1688-9050 (평일 10시-18시)
+          </p>
+          <p>Copyright © meVer All rights reserved. E-mail : sm@mever.me</p>
+        </div>
+        <div class="logo"><img src="http://mever.me/website/pc/img/logo_w3.png" alt="logo"></div>
+      </div>
+    </footer>
+
+  </body>
+</html>
